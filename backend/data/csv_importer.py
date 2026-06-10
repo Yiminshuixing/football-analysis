@@ -218,15 +218,31 @@ def import_csv_to_db(db: Session, league_code: str, season: str) -> dict:
 
 
 def import_csv_text_to_db(db: Session, league_code: str, season: str,
-                           csv_text: str) -> dict:
+                           csv_text: str,
+                           league_id: Optional[int] = None,
+                           league_name: Optional[str] = None) -> dict:
     """将 CSV 文本内容导入数据库
 
     与 import_csv_to_db 相同，但接受已下载的文本（用于手动上传）。
 
+    Args:
+        db: 数据库会话
+        league_code: CSV 代码 (E0, D1, SP1, I1, F1)，若 league_id 已指定可为任意标识
+        season: 赛季名 '2025-26'
+        csv_text: CSV 文本内容
+        league_id: 联赛 ID（覆盖 LEAGUE_CSV_MAP 查找，用于新建联赛）
+        league_name: 联赛名称（覆盖 LEAGUE_CSV_MAP 查找，用于新建联赛）
+
     Returns:
         dict: {"new": 新增数, "skipped": 跳过数, "total_in_csv": CSV总行数, "season": 赛季}
     """
-    league_id, league_name = LEAGUE_CSV_MAP[league_code]
+    # 解析联赛信息：支持传入值覆盖硬编码映射（用于新建联赛）
+    if league_id is not None and league_name is not None:
+        # 使用调用方传入的联赛信息（新建联赛场景）
+        pass
+    else:
+        # 从硬编码映射查找（五大联赛场景）
+        league_id, league_name = LEAGUE_CSV_MAP[league_code]
 
     # 解析
     fieldnames, rows = parse_csv(csv_text)

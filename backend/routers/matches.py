@@ -1,5 +1,6 @@
 """比赛数据 API 路由"""
 import json
+import logging
 from typing import Optional, List
 from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -8,6 +9,8 @@ from sqlalchemy.orm import Session
 from backend.database import get_db, Match, League, Team
 from backend.schemas import MatchInfo
 from backend.data.fetcher import DataSyncService
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -111,9 +114,10 @@ def get_matches_with_odds(
 
 @router.get("/matchdays")
 def get_matchdays(db: Session = Depends(get_db)):
-    """获取各联赛当前轮次和比赛总数"""
+    """获取各联赛当前轮次和比赛总数（含新建的自定义联赛）"""
     from sqlalchemy import func
     result = {}
+    # 五大联赛
     league_names = {2021: "英超", 2002: "德甲", 2014: "西甲", 2019: "意甲", 2015: "法甲"}
     for lid, lname in league_names.items():
         max_md = db.query(func.max(Match.matchday)).filter(
@@ -125,6 +129,25 @@ def get_matchdays(db: Session = Depends(get_db)):
             Match.status == "FINISHED",
         ).count()
         result[lname] = {"matchday": max_md or 0, "total_matches": total}
+    # 自定义联赛（从 League 表中查找非五大联赛的）
+    custom_ids = set()
+    all_leagues = db.query(League).all()
+    for l in all_leagues:
+        if l.id not in league_names:
+            custom_ids.add(l.id)
+    for cid in custom_ids:
+        max_md = db.query(func.max(Match.matchday)).filter(
+            Match.league_id == cid,
+            Match.status == "FINISHED",
+        ).scalar()
+        total = db.query(Match).filter(
+            Match.league_id == cid,
+            Match.status == "FINISHED",
+        ).count()
+        if total > 0:
+            league_obj = db.query(League).filter(League.id == cid).first()
+            name = league_obj.name if league_obj else f"联赛 {cid}"
+            result[name] = {"matchday": max_md or 0, "total_matches": total}
     return result
 
 
@@ -222,36 +245,104 @@ def upload_csv_file(
 
 @router.post("/upload/csv")
 def upload_csv_raw(body: dict):
-    """上传 CSV 文本内容并导入"""
+    """上传 CSV 文本内容并导入（支持新建联赛）"""
     from backend.data.csv_importer import import_csv_text_to_db, LEAGUE_CSV_MAP
-    from backend.database import get_db_sync
+    from backend.database import get_db_sync, League
 
     league_code = body.get("league_code", "")
+    league_name_input = body.get("league_name", "")
     csv_text = body.get("csv_text", "")
     season = body.get("season") or _current_season()
 
-    if league_code not in LEAGUE_CSV_MAP:
-        raise HTTPException(status_code=400, detail=f"无效的联赛代码: {league_code}")
     if not csv_text.strip():
         raise HTTPException(status_code=400, detail="CSV 内容为空")
 
     db = get_db_sync()
     try:
-        result = import_csv_text_to_db(db, league_code, season, csv_text)
+        # 解析联赛信息
+        if league_code in LEAGUE_CSV_MAP:
+            # 五大联赛 — 使用硬编码映射
+            league_id, league_name = LEAGUE_CSV_MAP[league_code]
+            result = import_csv_text_to_db(db, league_code, season, csv_text,
+                                            league_id=league_id, league_name=league_name)
+        else:
+            # 新建联赛 — 查找或创建联赛记录
+            if not league_name_input:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"联赛代码 '{league_code}' 不在已知列表中，请提供 league_name 以新建联赛",
+                )
+            league = db.query(League).filter(League.code == league_code).first()
+            if not league:
+                league = League(name=league_name_input, code=league_code)
+                db.add(league)
+                db.commit()
+                db.refresh(league)
+                logger.info(f"  🆕 新建联赛: {league.name} (code={league.code}, id={league.id})")
+            result = import_csv_text_to_db(
+                db, league_code, season, csv_text,
+                league_id=league.id, league_name=league.name,
+            )
+
         return {
             "message": "导入完成",
             "matches_imported": result.get("new", 0),
             "skipped": result.get("skipped", 0),
             "total_in_csv": result.get("total_in_csv", 0),
             "league_code": league_code,
-            "league_name": LEAGUE_CSV_MAP[league_code][1],
+            "league_name": league_name,
             "season": season,
         }
+    except HTTPException:
+        raise
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         db.close()
+
+
+# ===== 联赛管理 =====
+
+@router.get("/leagues")
+def list_leagues(db: Session = Depends(get_db)):
+    """获取所有联赛列表（含新建的自定义联赛）"""
+    leagues = db.query(League).order_by(League.id.asc()).all()
+    result = []
+    for l in leagues:
+        total = db.query(Match).filter(Match.league_id == l.id).count()
+        result.append({
+            "id": l.id,
+            "name": l.name,
+            "code": l.code,
+            "total_matches": total,
+        })
+    return result
+
+
+@router.post("/leagues/create")
+def create_league(body: dict, db: Session = Depends(get_db)):
+    """创建新联赛（用户手动上传时用）"""
+    name = body.get("name", "").strip()
+    code = body.get("code", "").strip()
+
+    if not name:
+        raise HTTPException(status_code=400, detail="联赛名称不能为空")
+    if not code:
+        raise HTTPException(status_code=400, detail="联赛代码不能为空")
+
+    existing = db.query(League).filter(League.code == code).first()
+    if existing:
+        return {"id": existing.id, "name": existing.name, "code": existing.code,
+                "message": "联赛已存在"}
+
+    league = League(name=name, code=code)
+    db.add(league)
+    db.commit()
+    db.refresh(league)
+    logger.info(f"  🆕 新建联赛: {league.name} (code={league.code}, id={league.id})")
+    return {"id": league.id, "name": league.name, "code": league.code,
+            "message": "联赛创建成功"}
 
 
 def _current_season() -> str:

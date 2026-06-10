@@ -145,7 +145,7 @@ def render():
                         total_in_csv = info.get("total_in_csv", 0)
                         detail_html += f"""
                         <div class="import-detail">
-                            <div class="id-title">{emojis.get(lname, '')} {lname}</div>
+                            <div class="id-title">{emojis.get(lname, '⚽')} {lname}</div>
                             <div class="id-stat">🆕 新增 <strong>{new_n}</strong> 场</div>
                             <div class="id-stat">⏭️ 跳过 <strong>{skipped}</strong> 场（已存在）</div>
                             <div class="id-stat">📄 CSV 共 <strong>{total_in_csv}</strong> 行</div>
@@ -205,13 +205,32 @@ def render():
     # 输入行 - 移动端自动竖排
     col1, col2 = st.columns(2)
     with col1:
-        league_code = st.selectbox(
+        # 五大联赛 + 新建联赛选项
+        known_leagues = [
+            ("E0", "🏴 英超"), ("D1", "🇩🇪 德甲"),
+            ("SP1", "🇪🇸 西甲"), ("I1", "🇮🇹 意甲"),
+            ("F1", "🇫🇷 法甲"),
+        ]
+        league_options = known_leagues + [("__new__", "➕ 新建联赛...")]
+        selected = st.selectbox(
             "选择联赛",
-            options=[("E0", "🏴 英超"), ("D1", "🇩🇪 德甲"),
-                     ("SP1", "🇪🇸 西甲"), ("I1", "🇮🇹 意甲"),
-                     ("F1", "🇫🇷 法甲")],
+            options=league_options,
             format_func=lambda x: x[1],
-        )[0]
+        )
+        league_code = selected[0]
+
+        # 新建联赛时显示额外输入
+        new_league_name = ""
+        new_league_code = ""
+        if league_code == "__new__":
+            st.markdown("---")
+            nc1, nc2 = st.columns(2)
+            with nc1:
+                new_league_name = st.text_input("🏷️ 联赛名称", placeholder="例：中超", key="new_lname")
+            with nc2:
+                new_league_code = st.text_input("🔤 联赛代码", placeholder="例：CSL", key="new_lcode").upper()
+            if not new_league_name or not new_league_code:
+                st.caption("请填写联赛名称和代码后上传")
 
     with col2:
         from datetime import datetime
@@ -224,20 +243,35 @@ def render():
     uploaded_file = st.file_uploader(
         "选择 CSV 文件",
         type=["csv"],
-        help="从 football-data.co.uk 下载的 CSV 文件",
+        help="从 football-data.co.uk 下载的 CSV 文件，或新建联赛的自定义 CSV",
     )
 
     # 上传并导入
     if uploaded_file is not None and st.button("📤 上传并导入", type="primary", use_container_width=True):
+        # 新建联赛校验
+        if league_code == "__new__":
+            if not new_league_name.strip():
+                st.error("请填写新建联赛的名称")
+                return
+            if not new_league_code.strip():
+                st.error("请填写新建联赛的代码（如 CSL）")
+                return
+            league_code = new_league_code.strip()
+
         with st.status("⏳ 正在导入...", expanded=True) as status:
             csv_text = uploaded_file.read().decode("utf-8-sig", errors="replace")
             status.write(f"📄 读取文件: {uploaded_file.name} ({len(csv_text)} 字符)")
 
-            result = api_post("/matches/upload/csv", json_body={
+            json_body = {
                 "league_code": league_code,
                 "csv_text": csv_text,
                 "season": season_input,
-            })
+            }
+            # 新建联赛时传入 league_name
+            if new_league_name.strip():
+                json_body["league_name"] = new_league_name.strip()
+
+            result = api_post("/matches/upload/csv", json_body=json_body)
 
             if result:
                 count = result.get("matches_imported", 0)
