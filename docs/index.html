@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="description" content="足彩泊松分析 — 基于 Poisson 分布 + Elo 评分的足球比赛预测工具">
+    <title>⚽ 足彩泊松分析</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+</head>
+<body>
+
+    <!-- ====== 顶栏 ====== -->
+    <header class="app-header">
+        <h1>⚽ 足彩泊松分析</h1>
+        <span class="header-subtitle">Poisson + Elo 融合模型</span>
+    </header>
+
+    <!-- ====== 底部导航 ====== -->
+    <nav class="tab-bar" id="tabBar">
+        <button class="tab-btn active" data-tab="home" onclick="switchTab('home')">
+            <span class="tab-icon">🏠</span>
+            <span>首页</span>
+        </button>
+        <button class="tab-btn" data-tab="predict" onclick="switchTab('predict')">
+            <span class="tab-icon">⚽</span>
+            <span>分析</span>
+        </button>
+        <button class="tab-btn" data-tab="standings" onclick="switchTab('standings')">
+            <span class="tab-icon">📊</span>
+            <span>积分榜</span>
+        </button>
+        <button class="tab-btn" data-tab="teams" onclick="switchTab('teams')">
+            <span class="tab-icon">🔍</span>
+            <span>球队</span>
+        </button>
+    </nav>
+
+    <!-- ====== 主内容 ====== -->
+    <main class="main-content">
+
+        <!-- ====== 首页 ====== -->
+        <section id="page-home" class="page-section active">
+            <div class="section-content">
+                <h2>🏆 选择联赛</h2>
+                <p>点击联赛加载数据，开始分析预测</p>
+                <div id="leagueStats"></div>
+                <div class="league-grid" id="leagueGrid"></div>
+            </div>
+        </section>
+
+        <!-- ====== 分析页 ====== -->
+        <section id="page-predict" class="page-section">
+            <div class="section-content">
+
+                <!-- 步骤1：选择联赛 -->
+                <div id="predStep1">
+                    <div class="card">
+                        <div class="card-title">① 选择联赛</div>
+                        <div class="league-grid" id="predLeagueGrid"></div>
+                    </div>
+                </div>
+
+                <!-- 步骤2：选择球队 -->
+                <div id="predStep2" style="display:none">
+                    <div class="card">
+                        <div class="card-title">② 选择主客队</div>
+                        <div class="card-subtitle" id="predSeasonLabel"></div>
+                        <div class="team-select-row">
+                            <div class="form-group">
+                                <label class="form-label">🏠 主队</label>
+                                <select class="form-select" id="homeTeam" onchange="onTeamChange()">
+                                    <option value="">-- 请选择主队 --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">✈️ 客队</label>
+                                <select class="form-select" id="awayTeam" onchange="onTeamChange()">
+                                    <option value="">-- 请选择客队 --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="btn-group" style="margin-top:12px">
+                            <button class="btn btn-secondary" onclick="backToLeagueSelect()">← 返回</button>
+                            <button class="btn btn-primary" id="goToOddsBtn" disabled onclick="goToOddsStep()">下一步</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤3：赔率输入 -->
+                <div id="predStep3" style="display:none">
+                    <div class="card">
+                        <div class="card-title">③ 赔率输入</div>
+                        <div id="oddsBtnGroup" class="btn-group">
+                            <button class="btn btn-primary" onclick="fetchOdds()">① 自动拉取赔率</button>
+                            <button class="btn btn-secondary" onclick="showManualOdds()">② 手动输入赔率</button>
+                            <button class="btn btn-warning" onclick="skipOdds()">⏭ 跳过（纯模型）</button>
+                        </div>
+                        <div id="manualOddsInput" style="display:none;margin-top:12px">
+                            <div class="odds-input-row">
+                                <div class="form-group">
+                                    <label class="form-label">主胜</label>
+                                    <input class="form-input" type="number" id="oddsHome" step="0.01" min="1.01" placeholder="1.85">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">平局</label>
+                                    <input class="form-input" type="number" id="oddsDraw" step="0.01" min="1.01" placeholder="3.40">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">客胜</label>
+                                    <input class="form-input" type="number" id="oddsAway" step="0.01" min="1.01" placeholder="4.20">
+                                </div>
+                            </div>
+                            <button class="btn btn-success" onclick="submitManualOdds()" style="margin-top:8px">开始分析 →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 结果展示 -->
+                <div id="predResult" style="display:none">
+                    <div id="resultContent"></div>
+                    <div class="btn-group" style="margin-top:8px">
+                        <button class="btn btn-secondary" onclick="backToTeamSelect()">← 重新选择</button>
+                        <button class="btn btn-primary" onclick="backToHomeFromResult()">🏠 首页</button>
+                    </div>
+                </div>
+
+                <!-- Loading -->
+                <div id="predLoading" class="loading" style="display:none">
+                    <div class="spinner"></div>
+                    <span id="predLoadingText">加载中...</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ====== 积分榜 ====== -->
+        <section id="page-standings" class="page-section">
+            <div class="section-content">
+                <h2>📊 积分榜</h2>
+                <p>选择联赛查看当前赛季积分榜</p>
+                <div id="standingsLeagueSelect">
+                    <div class="league-grid" id="stdLeagueGrid"></div>
+                </div>
+                <div id="standingsContent" style="display:none">
+                    <div class="card">
+                        <div class="card-title" id="stdLeagueTitle"></div>
+                        <button class="btn btn-sm btn-secondary" onclick="backToStdLeagueSelect()" style="margin-bottom:8px">← 切换联赛</button>
+                        <div class="info-box">基于本地比赛数据计算</div>
+                        <div id="standingsTableWrap" style="overflow-x:auto"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== 球队分析 ====== -->
+        <section id="page-teams" class="page-section">
+            <div class="section-content">
+                <h2>🔍 球队分析</h2>
+                <p>查询球队详情、近期状态、Elo 评分</p>
+                <div class="card">
+                    <div class="form-group">
+                        <label class="form-label">选择联赛</label>
+                        <select class="form-select" id="teamLeagueSelect" onchange="onTeamLeagueChange()"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">选择球队</label>
+                        <select class="form-select" id="teamSelect" onchange="onTeamSelectChange()">
+                            <option value="">-- 请先选择联赛 --</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="teamAnalyzeBtn" disabled onclick="analyzeTeam()">查看详情</button>
+                </div>
+                <div id="teamResult" style="display:none"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== 页脚 ====== -->
+    <footer class="app-footer">
+        <small>
+            数据源: <a href="https://github.com/Yiminshuixing/football.json" target="_blank">football.json</a> ·
+            预测模型: Poisson 分布 + Elo 评分 + Dixon-Coles 校正<br>
+            仅供研究娱乐，理性购彩
+        </small>
+    </footer>
+
+    <!-- ====== 脚本 ====== -->
+    <script src="js/models.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

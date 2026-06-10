@@ -1,6 +1,20 @@
 # ⚽ 足彩分析系统
 
-基于 **Poisson 分布** + **Elo 评分** 融合模型的足球比赛预测系统。覆盖英超、德甲、西甲、意甲、法甲五大联赛。
+基于 **Poisson 分布** + **Elo 评分** 融合模型的足球比赛预测系统。覆盖英超、德甲、西甲、意甲、法甲五大联赛 + 中超 + 世界杯。
+
+## 🌐 在线版本
+
+**静态前端版**（可直接部署到 GitHub Pages）:
+- 纯 HTML/CSS/JS，浏览器端运行
+- 数据从本地 JSON 文件加载
+- 所有计算（Poisson、Elo、融合模型）在浏览器中完成
+- 移动端优化，PWA 支持
+
+> 📁 静态版本位于 `docs/` 文件夹
+> 
+> 部署方式: GitHub → Settings → Pages → Source: `main` branch → `/docs` folder
+
+在线 Demo: [https://yiminshuixing.github.io/football-analysis/](https://yiminshuixing.github.io/football-analysis/)（部署后可用）
 
 ## 📸 截图
 
