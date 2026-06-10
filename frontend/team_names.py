@@ -176,6 +176,33 @@ CN_NAME_MAP: Dict[str, str] = {
     "斯特拉斯堡": "RC Strasbourg Alsace",
     "图卢兹": "Toulouse FC",
     "特鲁瓦": "ESTAC Troyes",
+    # ========== 中超 ==========
+    "上海海港": "Shanghai Port FC",
+    "上海申花": "Shanghai Shenhua",
+    "山东泰山": "Shandong Taishan",
+    "北京国安": "Beijing Guoan",
+    "成都蓉城": "Chengdu Rongcheng",
+    "河南": "Henan FC",
+    "河南队": "Henan FC",
+    "天津津门虎": "Tianjin Jinmen Tiger",
+    "武汉三镇": "Wuhan Three Towns",
+    "浙江": "Zhejiang Professional",
+    "浙江队": "Zhejiang Professional",
+    "云南玉昆": "Yunnan Yukun",
+    "大连英博": "Dalian Yingbo",
+    "青岛海牛": "Qingdao Hainiu",
+    "青岛西海岸": "Qingdao West Coast",
+    "深圳新鹏城": "Shenzhen Peng City",
+    "梅州客家": "Meizhou Hakka",
+    "长春亚泰": "Changchun Yatai",
+    "沧州雄狮": "Shijiazhuang Ever Bright",
+    "重庆铜梁龙": "Chongqing Tongliang Long",
+    "辽宁铁人": "Liaoning Iron Man",
+    # 历史名称 - 同队不同名
+    "广州队": "Guangzhou Evergrande",
+    "广州恒大": "Guangzhou Evergrande",
+    "广州富力": "Guangzhou R&F",
+    "天津泰达": "Tianjin Teda",
 }
 
 
@@ -239,6 +266,19 @@ def search_teams(query: str) -> List[Tuple[str, str, str]]:
                              "AS Saint-Étienne", "RC Strasbourg Alsace", "Toulouse FC",
                              "ESTAC Troyes"]:
                 league = "法甲"
+            elif en_name in ["Shanghai Port FC", "Shanghai Shenhua", "Shandong Taishan",
+                             "Beijing Guoan", "Chengdu Rongcheng", "Henan FC",
+                             "Tianjin Jinmen Tiger", "Wuhan Three Towns", "Zhejiang Professional",
+                             "Yunnan Yukun", "Dalian Yingbo", "Qingdao Hainiu",
+                             "Qingdao West Coast", "Shenzhen Peng City", "Meizhou Hakka",
+                             "Changchun Yatai", "Guangzhou Evergrande", "Guangzhou R&F",
+                             "Wuhan Zall FC", "Hebei China Fortune", "Chongqing Lifan",
+                             "Henan Jianye", "Dalian Yifang FC", "Jiāngsū Sūníng",
+                             "Tianjin Teda", "Tianjin Tianhai", "Beijing Renhe FC",
+                             "Shenzhen FC", "Shanghai SIPG", "Qingdao Huanghai",
+                             "Dalian Pro", "Shijiazhuang Ever Bright",
+                             "Chongqing Tongliang Long", "Liaoning Iron Man"]:
+                league = "中超"
 
             entry = (cn_name, en_name, league)
             if entry not in results:
@@ -287,6 +327,19 @@ def get_all_teams_cn() -> List[Tuple[str, str, str]]:
                          "AS Saint-Étienne", "RC Strasbourg Alsace", "Toulouse FC",
                          "ESTAC Troyes"]:
             league_map[en_name] = "法甲"
+        elif en_name in ["Shanghai Port FC", "Shanghai Shenhua", "Shandong Taishan",
+                         "Beijing Guoan", "Chengdu Rongcheng", "Henan FC",
+                         "Tianjin Jinmen Tiger", "Wuhan Three Towns", "Zhejiang Professional",
+                         "Yunnan Yukun", "Dalian Yingbo", "Qingdao Hainiu",
+                         "Qingdao West Coast", "Shenzhen Peng City", "Meizhou Hakka",
+                         "Changchun Yatai", "Guangzhou Evergrande", "Guangzhou R&F",
+                         "Wuhan Zall FC", "Hebei China Fortune", "Chongqing Lifan",
+                         "Henan Jianye", "Dalian Yifang FC", "Jiāngsū Sūníng",
+                         "Tianjin Teda", "Tianjin Tianhai", "Beijing Renhe FC",
+                         "Shenzhen FC", "Shanghai SIPG", "Qingdao Huanghai",
+                         "Dalian Pro", "Shijiazhuang Ever Bright",
+                         "Chongqing Tongliang Long", "Liaoning Iron Man"]:
+            league_map[en_name] = "中超"
         else:
             league_map[en_name] = "英超"
 
