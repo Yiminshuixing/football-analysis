@@ -3,3 +3,18 @@ gatherUsageStats = false
 
 [server]
 headless = true
+
+[theme]
+primaryColor = "#4CAF50"
+backgroundColor = "#0e1117"
+secondaryBackgroundColor = "#262730"
+textColor = "#fafafa"
+font = "sans serif"
+
+[runner]
+# 移动端快速 reload
+fastReruns = true
+
+[client]
+# 关闭 Streamlit 自带工具栏，用我们自己的
+showToolbar = false

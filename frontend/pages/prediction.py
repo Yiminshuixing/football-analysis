@@ -1,16 +1,121 @@
-"""比赛预测页面 — 输入球队+赔率，获取预测结果"""
+"""比赛预测页面 — 输入球队+赔率，获取预测结果（移动端适配）"""
 import streamlit as st
 from frontend.utils import api_get, api_post
 from frontend.team_names import CN_NAME_MAP
 
 
 def render():
-    # 返回按钮
-    col1, col2 = st.columns([1, 5])
-    with col1:
-        if st.button("← 返回"):
-            st.session_state.page = "home"
-            st.rerun()
+    # ===== 页面级 CSS =====
+    st.markdown("""
+    <style>
+        /* 返回按钮行 - 移动端紧凑 */
+        .back-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .back-row .stButton button {
+            min-height: 36px;
+            padding: 4px 16px;
+            font-size: 0.9rem !important;
+            min-width: auto;
+            width: auto;
+        }
+
+        /* 比分预测大卡片 - 移动端缩放 */
+        .score-card {
+            text-align: center;
+            padding: 24px 16px;
+            border-radius: 16px;
+            border: 2px solid #4CAF50;
+            background: linear-gradient(135deg, rgba(76,175,80,0.08), rgba(76,175,80,0.02));
+        }
+        .score-card h2 { margin: 4px 0; font-size: 1.2rem; }
+        .score-card .score {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 8px 0;
+            letter-spacing: 6px;
+        }
+        .score-card .outcome {
+            font-size: 1.1rem;
+            margin-top: 8px;
+        }
+        .score-card .confidence {
+            font-size: 0.9rem;
+            color: gray;
+        }
+
+        /* 比分概率格子 */
+        .score-grid-item {
+            text-align: center;
+            padding: 10px 6px;
+            border-radius: 10px;
+            border: 1px solid rgba(128,128,128,0.2);
+            margin: 4px;
+            background: rgba(255,255,255,0.03);
+            transition: transform 0.15s ease;
+        }
+        .score-grid-item:active {
+            transform: scale(0.95);
+        }
+        .score-grid-item .score-num {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .score-grid-item .score-prob {
+            font-size: 0.8rem;
+            color: gray;
+        }
+        .score-grid-item .prob-bar {
+            height: 4px;
+            background: rgba(128,128,128,0.15);
+            border-radius: 2px;
+            margin-top: 4px;
+            overflow: hidden;
+        }
+        .score-grid-item .prob-fill {
+            height: 100%;
+            background: #2ecc71;
+            border-radius: 2px;
+        }
+
+        /* 近期成绩条目 */
+        .form-item {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(128,128,128,0.12);
+            margin: 4px 0;
+            font-size: 0.9rem;
+        }
+
+        /* 价值投注建议 */
+        .value-bet {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border-left: 4px solid #f39c12;
+            background: rgba(243,156,18,0.08);
+            margin: 6px 0;
+            font-size: 0.9rem;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 480px) {
+            .score-card .score { font-size: 2.8rem; }
+            .score-card { padding: 16px 10px; }
+            .score-grid-item .score-num { font-size: 1.1rem; }
+            .score-grid-item { padding: 8px 4px; margin: 2px; }
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # ===== 返回按钮 =====
+    st.markdown('<div class="back-row">', unsafe_allow_html=True)
+    if st.button("← 返回", key="pred_back"):
+        st.session_state.page = "home"
+        st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
     st.title("🎯 比赛预测")
     st.caption("输入球队名称（中文/英文）和赔率，系统自动预测")
@@ -47,6 +152,7 @@ def render():
             value=3.20, step=0.05, format="%.2f",
         )
 
+        # 预测按钮 - 独立一行全宽
         predict_btn = st.button(
             "🔮 开始预测", type="primary", use_container_width=True
         )
@@ -112,31 +218,25 @@ def render():
     st.markdown("## 📊 预测结果")
 
     # 比分预测大卡片
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        home_name = pred_result["home_team"]["name"]
-        away_name = pred_result["away_team"]["name"]
-        pred_h = p["predicted_home_score"]
-        pred_a = p["predicted_away_score"]
-        outcome_labels = {"HOME": "主胜 ✅", "DRAW": "平局 🤝", "AWAY": "客胜 ✅"}
-        outcome = p["predicted_outcome"]
+    home_name = pred_result["home_team"]["name"]
+    away_name = pred_result["away_team"]["name"]
+    pred_h = p["predicted_home_score"]
+    pred_a = p["predicted_away_score"]
+    outcome_labels = {"HOME": "主胜 ✅", "DRAW": "平局 🤝", "AWAY": "客胜 ✅"}
+    outcome = p["predicted_outcome"]
 
-        st.markdown(
-            f"""
-            <div style="text-align:center; padding:20px; border-radius:10px; border:2px solid #4CAF50;">
-                <h2 style="margin:0;">{home_name}</h2>
-                <div style="font-size:4rem; font-weight:bold; margin:10px 0;">
-                    {pred_h} : {pred_a}
-                </div>
-                <h2 style="margin:0;">{away_name}</h2>
-                <p style="font-size:1.2rem; margin-top:10px;">
-                    🎯 {outcome_labels.get(outcome, outcome)}
-                </p>
-                <p>置信度: <strong>{p['confidence']}%</strong></p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+    st.markdown(
+        f"""
+        <div class="score-card">
+            <h2>{home_name}</h2>
+            <div class="score">{pred_h} : {pred_a}</div>
+            <h2>{away_name}</h2>
+            <div class="outcome">🎯 {outcome_labels.get(outcome, outcome)}</div>
+            <div class="confidence">置信度: <strong>{p['confidence']}%</strong></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     st.divider()
 
@@ -154,17 +254,17 @@ def render():
 
         st.markdown(
             f"""
-            <div style="display:flex; height:30px; border-radius:15px; overflow:hidden; margin:10px 0;">
+            <div style="display:flex; height:36px; border-radius:18px; overflow:hidden; margin:10px 0;">
                 <div style="flex:{h_pct:.3f}; background:#2ecc71; text-align:center; color:white;
-                     font-size:13px; line-height:30px; font-weight:bold;">
+                     font-size:13px; line-height:36px; font-weight:bold;">
                     {'🏠 ' + f'{h_prob:.0%}' if h_pct > 0.1 else ''}
                 </div>
                 <div style="flex:{d_pct:.3f}; background:#95a5a6; text-align:center; color:white;
-                     font-size:13px; line-height:30px; font-weight:bold;">
+                     font-size:13px; line-height:36px; font-weight:bold;">
                     {'🤝 ' + f'{d_prob:.0%}' if d_pct > 0.1 else ''}
                 </div>
                 <div style="flex:{a_pct:.3f}; background:#e74c3c; text-align:center; color:white;
-                     font-size:13px; line-height:30px; font-weight:bold;">
+                     font-size:13px; line-height:36px; font-weight:bold;">
                     {'✈️ ' + f'{a_prob:.0%}' if a_pct > 0.1 else ''}
                 </div>
             </div>
@@ -181,7 +281,6 @@ def render():
     with prob_cols[2]:
         st.metric("✈️ 客胜", f"{a_prob:.1%}", delta_color="off")
 
-    # xG 展示
     st.caption(f"预期进球 (xG): 主队 {p['home_xg']:.2f} — 客队 {p['away_xg']:.2f}")
 
     st.divider()
@@ -190,32 +289,16 @@ def render():
     st.markdown("##### 比分概率分布")
     score_probs = p.get("score_probabilities", [])
     if score_probs:
-        # 用表格展示 Top 比分
-        score_data = []
-        for sp in score_probs[:8]:
-            score_data.append({
-                "比分": f"{sp['home']}:{sp['away']}",
-                "概率": f"{sp['probability']:.1%}",
-                "条": sp["probability"],
-            })
-
         cols = st.columns(4)
         for i, sp in enumerate(score_probs[:8]):
             with cols[i % 4]:
+                bar_pct = min(sp['probability'] * 100, 100)
                 st.markdown(
                     f"""
-                    <div style="text-align:center; padding:8px; border-radius:8px;
-                         border:1px solid #ddd; margin:4px;">
-                        <div style="font-size:1.5rem; font-weight:bold;">
-                            {sp['home']}:{sp['away']}
-                        </div>
-                        <div style="font-size:0.9rem; color:gray;">
-                            {sp['probability']:.1%}
-                        </div>
-                        <div style="height:4px; background:#eee; border-radius:2px; margin-top:4px;">
-                            <div style="height:100%; width:{sp['probability']*1000:.1f}%;
-                                 background:#2ecc71; border-radius:2px;"></div>
-                        </div>
+                    <div class="score-grid-item">
+                        <div class="score-num">{sp['home']}:{sp['away']}</div>
+                        <div class="score-prob">{sp['probability']:.1%}</div>
+                        <div class="prob-bar"><div class="prob-fill" style="width:{bar_pct:.1f}%;"></div></div>
                     </div>
                     """,
                     unsafe_allow_html=True,
@@ -235,11 +318,14 @@ def render():
             for m in home_form:
                 r_emoji = {"W": "✅", "D": "➖", "L": "❌"}
                 st.markdown(
-                    f"{r_emoji.get(m['result'], '❓')} "
-                    f"**{m['score']}** vs {m['opponent']}"
+                    f'<div class="form-item">'
+                    f'{r_emoji.get(m["result"], "❓")} '
+                    f'<strong>{m["score"]}</strong> vs {m["opponent"]}'
+                    f'</div>',
+                    unsafe_allow_html=True,
                 )
         else:
-            st.caption("暂无数据")
+            st.caption("暂无主场比赛数据")
 
     with col2:
         st.markdown(f"**✈️ {away_name} 近期 5 场客场比赛**")
@@ -248,11 +334,14 @@ def render():
             for m in away_form:
                 r_emoji = {"W": "✅", "D": "➖", "L": "❌"}
                 st.markdown(
-                    f"{r_emoji.get(m['result'], '❓')} "
-                    f"**{m['score']}** vs {m['opponent']}"
+                    f'<div class="form-item">'
+                    f'{r_emoji.get(m["result"], "❓")} '
+                    f'<strong>{m["score"]}</strong> vs {m["opponent"]}'
+                    f'</div>',
+                    unsafe_allow_html=True,
                 )
         else:
-            st.caption("暂无数据")
+            st.caption("暂无客场比赛数据")
 
     st.divider()
 
@@ -277,10 +366,13 @@ def render():
         if odds_analysis.get("value_bets"):
             st.markdown("**💰 价值投注建议**")
             for vb in odds_analysis["value_bets"]:
-                st.info(
-                    f"**{outcomes_zh.get(vb['type'], vb['type'])}** "
-                    f"— 模型概率 {vb['model_prob']:.0%} vs 市场 {vb['odds_prob']:.0%}，"
-                    f"赔率 {vb['odds']:.2f}，期望值 {vb['expected_value']:.2f}"
+                st.markdown(
+                    f'<div class="value-bet">'
+                    f'<strong>{outcomes_zh.get(vb["type"], vb["type"])}</strong> — '
+                    f'模型 {vb["model_prob"]:.0%} vs 市场 {vb["odds_prob"]:.0%}，'
+                    f'赔率 {vb["odds"]:.2f}，期望值 {vb["expected_value"]:.2f}'
+                    f'</div>',
+                    unsafe_allow_html=True,
                 )
 
     st.divider()
