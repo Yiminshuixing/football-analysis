@@ -25,8 +25,8 @@
             <span>首页</span>
         </button>
         <button class="tab-btn" data-tab="predict" onclick="switchTab('predict')">
-            <span class="tab-icon">⚽</span>
-            <span>分析</span>
+            <span class="tab-icon">🎯</span>
+            <span>预测</span>
         </button>
         <button class="tab-btn" data-tab="standings" onclick="switchTab('standings')">
             <span class="tab-icon">📊</span>
@@ -45,94 +45,80 @@
         <section id="page-home" class="page-section active">
             <div class="section-content">
                 <h2>🏆 选择联赛</h2>
-                <p>点击联赛加载数据，开始分析预测</p>
-                <div id="leagueStats"></div>
+                <p>点击联赛进入预测，或选择其他功能</p>
                 <div class="league-grid" id="leagueGrid"></div>
             </div>
         </section>
 
-        <!-- ====== 分析页 ====== -->
+        <!-- ====== 预测页 ====== -->
         <section id="page-predict" class="page-section">
             <div class="section-content">
+                <h2>🎯 比赛预测</h2>
+                <p>输入球队名称（中/英文）和赔率，系统自动预测</p>
 
-                <!-- 步骤1：选择联赛 -->
-                <div id="predStep1">
-                    <div class="card">
-                        <div class="card-title">① 选择联赛</div>
-                        <div class="league-grid" id="predLeagueGrid"></div>
+                <!-- 联赛选择 -->
+                <div class="card" id="predLeagueSelector">
+                    <div class="form-group">
+                        <label class="form-label">选择联赛</label>
+                        <select class="form-select" id="predLeagueSelect" onchange="onPredLeagueChange()">
+                            <option value="">-- 请选择联赛 --</option>
+                        </select>
                     </div>
+                    <div id="predLeagueInfo" style="display:none" class="info-box"></div>
                 </div>
 
-                <!-- 步骤2：选择球队 -->
-                <div id="predStep2" style="display:none">
-                    <div class="card">
-                        <div class="card-title">② 选择主客队</div>
-                        <div class="card-subtitle" id="predSeasonLabel"></div>
-                        <div class="team-select-row">
-                            <div class="form-group">
-                                <label class="form-label">🏠 主队</label>
-                                <select class="form-select" id="homeTeam" onchange="onTeamChange()">
-                                    <option value="">-- 请选择主队 --</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">✈️ 客队</label>
-                                <select class="form-select" id="awayTeam" onchange="onTeamChange()">
-                                    <option value="">-- 请选择客队 --</option>
-                                </select>
+                <!-- 输入区域 -->
+                <div class="card" id="predInputArea" style="display:none">
+                    <div class="card-title">比赛信息</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                        <div class="form-group">
+                            <label class="form-label">🏠 主队</label>
+                            <div class="team-input-wrap">
+                                <span class="team-input-icon">🔍</span>
+                                <input type="text" class="team-search-input" id="homeInput"
+                                       placeholder="例：曼城、利物浦" autocomplete="off">
+                                <div class="team-suggestions" id="homeSuggestions"></div>
                             </div>
                         </div>
-                        <div class="btn-group" style="margin-top:12px">
-                            <button class="btn btn-secondary" onclick="backToLeagueSelect()">← 返回</button>
-                            <button class="btn btn-primary" id="goToOddsBtn" disabled onclick="goToOddsStep()">下一步</button>
+                        <div class="form-group">
+                            <label class="form-label">✈️ 客队</label>
+                            <div class="team-input-wrap">
+                                <span class="team-input-icon">🔍</span>
+                                <input type="text" class="team-search-input" id="awayInput"
+                                       placeholder="例：阿森纳、皇马" autocomplete="off">
+                                <div class="team-suggestions" id="awaySuggestions"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 步骤3：赔率输入 -->
-                <div id="predStep3" style="display:none">
-                    <div class="card">
-                        <div class="card-title">③ 赔率输入</div>
-                        <div id="oddsBtnGroup" class="btn-group">
-                            <button class="btn btn-primary" onclick="fetchOdds()">① 自动拉取赔率</button>
-                            <button class="btn btn-secondary" onclick="showManualOdds()">② 手动输入赔率</button>
-                            <button class="btn btn-warning" onclick="skipOdds()">⏭ 跳过（纯模型）</button>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px">
+                        <div class="form-group">
+                            <label class="form-label">主胜赔率</label>
+                            <input class="form-input" type="number" id="oddsHome" step="0.01" min="1.01" value="1.80">
                         </div>
-                        <div id="manualOddsInput" style="display:none;margin-top:12px">
-                            <div class="odds-input-row">
-                                <div class="form-group">
-                                    <label class="form-label">主胜</label>
-                                    <input class="form-input" type="number" id="oddsHome" step="0.01" min="1.01" placeholder="1.85">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">平局</label>
-                                    <input class="form-input" type="number" id="oddsDraw" step="0.01" min="1.01" placeholder="3.40">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">客胜</label>
-                                    <input class="form-input" type="number" id="oddsAway" step="0.01" min="1.01" placeholder="4.20">
-                                </div>
-                            </div>
-                            <button class="btn btn-success" onclick="submitManualOdds()" style="margin-top:8px">开始分析 →</button>
+                        <div class="form-group">
+                            <label class="form-label">平局赔率</label>
+                            <input class="form-input" type="number" id="oddsDraw" step="0.01" min="1.01" value="3.40">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">客胜赔率</label>
+                            <input class="form-input" type="number" id="oddsAway" step="0.01" min="1.01" value="3.50">
                         </div>
                     </div>
-                </div>
 
-                <!-- 结果展示 -->
-                <div id="predResult" style="display:none">
-                    <div id="resultContent"></div>
-                    <div class="btn-group" style="margin-top:8px">
-                        <button class="btn btn-secondary" onclick="backToTeamSelect()">← 重新选择</button>
-                        <button class="btn btn-primary" onclick="backToHomeFromResult()">🏠 首页</button>
-                    </div>
+                    <button class="btn btn-primary" id="predictBtn" onclick="doPredict()" style="margin-top:8px" disabled>
+                        🔮 开始预测
+                    </button>
                 </div>
 
                 <!-- Loading -->
                 <div id="predLoading" class="loading" style="display:none">
                     <div class="spinner"></div>
-                    <span id="predLoadingText">加载中...</span>
+                    <span id="predLoadingText">计算预测中...</span>
                 </div>
 
+                <!-- 结果 -->
+                <div id="predResult" style="display:none"></div>
             </div>
         </section>
 
@@ -140,18 +126,16 @@
         <section id="page-standings" class="page-section">
             <div class="section-content">
                 <h2>📊 积分榜</h2>
-                <p>选择联赛查看当前赛季积分榜</p>
-                <div id="standingsLeagueSelect">
-                    <div class="league-grid" id="stdLeagueGrid"></div>
-                </div>
-                <div id="standingsContent" style="display:none">
-                    <div class="card">
-                        <div class="card-title" id="stdLeagueTitle"></div>
-                        <button class="btn btn-sm btn-secondary" onclick="backToStdLeagueSelect()" style="margin-bottom:8px">← 切换联赛</button>
-                        <div class="info-box">基于本地比赛数据计算</div>
-                        <div id="standingsTableWrap" style="overflow-x:auto"></div>
+                <p>选择联赛查看积分榜</p>
+                <div class="card">
+                    <div class="form-group">
+                        <label class="form-label">选择联赛</label>
+                        <select class="form-select" id="stdLeagueSelect" onchange="onStdLeagueChange()">
+                            <option value="">-- 请选择联赛 --</option>
+                        </select>
                     </div>
                 </div>
+                <div id="standingsContent"></div>
             </div>
         </section>
 
@@ -159,11 +143,13 @@
         <section id="page-teams" class="page-section">
             <div class="section-content">
                 <h2>🔍 球队分析</h2>
-                <p>查询球队详情、近期状态、Elo 评分</p>
+                <p>查看球队详情、近期表现、Elo 评分</p>
                 <div class="card">
                     <div class="form-group">
                         <label class="form-label">选择联赛</label>
-                        <select class="form-select" id="teamLeagueSelect" onchange="onTeamLeagueChange()"></select>
+                        <select class="form-select" id="teamLeagueSelect" onchange="onTeamLeagueChange()">
+                            <option value="">-- 请选择联赛 --</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">选择球队</label>
@@ -171,7 +157,9 @@
                             <option value="">-- 请先选择联赛 --</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary" id="teamAnalyzeBtn" disabled onclick="analyzeTeam()">查看详情</button>
+                    <button class="btn btn-primary" id="teamAnalyzeBtn" disabled onclick="analyzeTeam()">
+                        🔍 查看详情
+                    </button>
                 </div>
                 <div id="teamResult" style="display:none"></div>
             </div>

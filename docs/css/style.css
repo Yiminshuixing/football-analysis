@@ -763,3 +763,255 @@ body {
 .h2h-row .h2h-home { flex: 1; text-align: right; }
 .h2h-row .h2h-away { flex: 1; text-align: left; }
 .h2h-row .h2h-score { font-weight: 700; min-width: 48px; text-align: center; }
+
+/* ===== Streamlit 风格组件 ===== */
+
+/* 球队搜索输入框 — 带下拉提示 */
+.team-input-wrap {
+    position: relative;
+}
+
+.team-input-wrap input {
+    width: 100%;
+    padding: 12px 14px 12px 36px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    background: var(--card);
+    color: var(--text);
+    transition: border-color 0.2s;
+}
+
+.team-input-wrap input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(26,115,232,0.12);
+}
+
+.team-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.team-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.team-suggestions.show {
+    display: block;
+}
+
+.team-suggestions .suggestion-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.team-suggestions .suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.team-suggestions .suggestion-item:hover,
+.team-suggestions .suggestion-item.active {
+    background: #e8f0fe;
+}
+
+.team-suggestions .suggestion-item .cn-name {
+    font-weight: 600;
+}
+
+.team-suggestions .suggestion-item .en-name {
+    color: var(--text-secondary);
+    margin-left: 6px;
+}
+
+/* 比分大卡片 */
+.score-card {
+    text-align: center;
+    padding: 24px 16px;
+    border-radius: 16px;
+    border: 2px solid var(--accent);
+    background: linear-gradient(135deg, rgba(52,168,83,0.08), rgba(52,168,83,0.02));
+    margin-bottom: 12px;
+}
+
+.score-card .score {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 8px 0;
+    letter-spacing: 6px;
+    color: var(--text);
+}
+
+.score-card .teams {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.score-card .outcome {
+    font-size: 1rem;
+    margin-top: 8px;
+}
+
+.score-card .confidence-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+    .score-card .score { font-size: 2.8rem; }
+    .score-card { padding: 16px 10px; }
+}
+
+/* 三色概率条 */
+.prob-bar-3 {
+    display: flex;
+    height: 36px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.prob-bar-3 .seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: flex 0.3s ease;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* 比分概率网格（4列） */
+.score-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.score-grid-item {
+    text-align: center;
+    padding: 10px 4px;
+    border-radius: 10px;
+    border: 1px solid rgba(128,128,128,0.15);
+    background: rgba(255,255,255,0.03);
+}
+
+.score-grid-item .score-num {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.score-grid-item .score-pct {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.score-grid-item .prob-bar-tiny {
+    height: 4px;
+    background: rgba(128,128,128,0.12);
+    border-radius: 2px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.score-grid-item .prob-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* 近期比赛条目 */
+.form-item {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(128,128,128,0.12);
+    margin: 4px 0;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 价值投注建议 */
+.value-bet {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border-left: 4px solid var(--warning);
+    background: rgba(251,188,5,0.08);
+    margin: 6px 0;
+    font-size: 0.85rem;
+}
+
+/* 可折叠详情 */
+.details-expander {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.details-expander summary {
+    padding: 12px 14px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: var(--bg);
+}
+
+.details-expander summary:hover {
+    background: #e8ecf1;
+}
+
+.details-expander .details-body {
+    padding: 12px 14px;
+}
+
+/* 赔率对比metric */
+.odds-metric {
+    text-align: center;
+    padding: 12px 6px;
+    border-radius: 8px;
+    background: var(--bg);
+}
+
+.odds-metric .odds-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.odds-metric .odds-model {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.odds-metric .odds-market {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.odds-metric .odds-delta.pos { color: var(--accent); }
+.odds-metric .odds-delta.neg { color: var(--danger); }
