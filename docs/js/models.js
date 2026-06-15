@@ -51,6 +51,9 @@ class PoissonPredictor {
             filtered = matches.filter(m => m.away_team_id === teamId);
         }
 
+        // 🔧 只算已结束的比赛（SCHEDULED 的 score=null 会被 || 0 当成 0，拉低攻击强度）
+        filtered = filtered.filter(m => m.status === 'FINISHED' && m.score_home != null && m.score_away != null);
+
         // 取最近 N 场，按时间降序
         const sorted = [...filtered].sort((a, b) => {
             if (a.utc_date < b.utc_date) return 1;

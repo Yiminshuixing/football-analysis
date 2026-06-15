@@ -15,9 +15,10 @@ const LEAGUE_META = {
     2015: { code: 'FL1', name: '法国超级联赛', abbr: '法甲' },
     2022: { code: 'CN1', name: '中国超级联赛', abbr: '中超' },
     2023: { code: 'WCQ', name: '世界杯预选赛', abbr: '世预赛' },
-    2024: { code: 'WC2014', name: '2014世界杯', abbr: '2014世界杯' },
+    2024: { code: 'WC2022', name: '2022世界杯', abbr: '2022世界杯' },
     2025: { code: 'WC2018', name: '2018世界杯', abbr: '2018世界杯' },
-    2026: { code: 'WC2022', name: '2022世界杯', abbr: '2022世界杯' },
+    2026: { code: 'WC2014', name: '2014世界杯', abbr: '2014世界杯' },
+    2027: { code: 'WC2026', name: '2026世界杯', abbr: '2026世界杯' },
 };
 
 const LEAGUE_PARAMS = {
@@ -31,6 +32,7 @@ const LEAGUE_PARAMS = {
     2024: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.50 },
     2025: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.50 },
     2026: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.50 },
+    2027: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.55 },
 };
 
 // ====== 状态 ======
