@@ -5,6 +5,9 @@ const CONFIG = {
     ODDS_API_KEY: 'efc0bf96ed9d8255c706f2185a15e42e',
     DATA_PATH: 'data',
     CACHE_TTL: 6 * 60 * 60 * 1000,
+    // 💾 缓存版本号 — 改了数据要 bump 一下避免用户拿到老 localStorage
+    //   现状: 2026 WC 数据导入 (48 队 + 72 场)
+    CACHE_VERSION: 'v2-wc2026',
 };
 
 const LEAGUE_META = {
