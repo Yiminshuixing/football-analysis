@@ -51,7 +51,7 @@ const state = {
 // ====== 缓存 ======
 function cacheGet(key) {
     try {
-        const raw = localStorage.getItem('fc_' + key);
+        const raw = localStorage.getItem('fc_' + CONFIG.CACHE_VERSION + '_' + key);
         if (!raw) return null;
         const item = JSON.parse(raw);
         if (Date.now() - item.ts > CONFIG.CACHE_TTL) return null;
@@ -59,7 +59,7 @@ function cacheGet(key) {
     } catch { return null; }
 }
 function cacheSet(key, data) {
-    try { localStorage.setItem('fc_' + key, JSON.stringify({ ts: Date.now(), data })); } catch {}
+    try { localStorage.setItem('fc_' + CONFIG.CACHE_VERSION + '_' + key, JSON.stringify({ ts: Date.now(), data })); } catch {}
 }
 
 // ====== 数据加载 ======
