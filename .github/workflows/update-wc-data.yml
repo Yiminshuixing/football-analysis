@@ -1,0 +1,52 @@
+name: 自动更新世界杯数据
+
+on:
+  schedule:
+    # 每 6 小时跑一次 — 小组赛阶段每天 2 轮比赛
+    - cron: '7 */6 * * *'
+  workflow_dispatch:
+    # 支持手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 运行数据更新
+        env:
+          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
+        run: python3 backend/data/wc_data_updater.py
+
+      - name: 检查是否有变化
+        id: check
+        run: |
+          if [ -n "$(git status --porcelain docs/data/)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 提交并推送数据更新
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "世界杯数据机器人"
+          git config user.email "bot@football-analysis"
+
+          # 统计本轮回车场数
+          FINISHED=$(python3 -c "
+import json
+m = json.load(open('docs/data/matches_2027.json'))
+print(sum(1 for x in m if x['status'] == 'FINISHED'))
+          ")
+
+          git add docs/data/matches_2027.json docs/data/teams.json
+          git commit -m "auto: ⚽ 世界杯数据更新（${FINISHED} 场已完赛）"
+          git push
