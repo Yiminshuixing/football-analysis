@@ -10,6 +10,8 @@ name: 自动更新世界杯数据
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,4 +46,7 @@ jobs:
 
           git add docs/data/matches_2027.json docs/data/teams.json
           git commit -m "auto: ⚽ 世界杯数据更新（${FINISHED} 场已完赛）"
+
+          # 用 GITHUB_TOKEN 推送（https 方式）
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push
