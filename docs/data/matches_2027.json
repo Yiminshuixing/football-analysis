@@ -249,9 +249,9 @@
   "away_team_id": 783,
   "home_team_name": "Iran",
   "away_team_name": "New Zealand",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 0,
+  "score_away": 0,
+  "winner": "DRAW",
   "group": "GROUP_G",
   "stage": "GROUP_STAGE"
  },
