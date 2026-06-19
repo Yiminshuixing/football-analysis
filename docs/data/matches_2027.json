@@ -457,9 +457,9 @@
   "away_team_id": 779,
   "home_team_name": "United States",
   "away_team_name": "Australia",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 2,
+  "score_away": 0,
+  "winner": "HOME_TEAM",
   "group": "GROUP_D",
   "stage": "GROUP_STAGE"
  },
