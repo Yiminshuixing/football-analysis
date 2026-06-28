@@ -1161,9 +1161,9 @@
   "away_team_id": 828,
   "home_team_name": "South Africa",
   "away_team_name": "Canada",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 0,
+  "score_away": 0,
+  "winner": "DRAW",
   "stage": "LAST_32"
  },
  {
