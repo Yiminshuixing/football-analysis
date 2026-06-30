@@ -1390,5 +1390,20 @@
   "score_away": null,
   "winner": null,
   "stage": "LAST_32"
+ },
+ {
+  "id": 537376,
+  "league_id": 2027,
+  "season": "2026",
+  "utc_date": "2026-07-04 17:00:00.000000",
+  "status": "SCHEDULED",
+  "home_team_id": 828,
+  "away_team_id": 815,
+  "home_team_name": "Canada",
+  "away_team_name": "Morocco",
+  "score_home": null,
+  "score_away": null,
+  "winner": null,
+  "stage": "LAST_16"
  }
 ]
