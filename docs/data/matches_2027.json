@@ -1261,14 +1261,14 @@
   "league_id": 2027,
   "season": "2026",
   "utc_date": "2026-07-01 16:00:00.000000",
-  "status": "SCHEDULED",
+  "status": "FINISHED",
   "home_team_id": 770,
   "away_team_id": 1934,
   "home_team_name": "England",
   "away_team_name": "Congo DR",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 2,
+  "score_away": 1,
+  "winner": "HOME_TEAM",
   "stage": "LAST_32"
  },
  {
@@ -1281,9 +1281,9 @@
   "away_team_id": 804,
   "home_team_name": "Belgium",
   "away_team_name": "Senegal",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 0,
+  "score_away": 0,
+  "winner": "DRAW",
   "stage": "LAST_32"
  },
  {
