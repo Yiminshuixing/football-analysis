@@ -1435,5 +1435,35 @@
   "score_away": null,
   "winner": null,
   "stage": "LAST_16"
+ },
+ {
+  "id": 537378,
+  "league_id": 2027,
+  "season": "2026",
+  "utc_date": "2026-07-06 00:00:00.000000",
+  "status": "SCHEDULED",
+  "home_team_id": 769,
+  "away_team_id": 770,
+  "home_team_name": "Mexico",
+  "away_team_name": "England",
+  "score_home": null,
+  "score_away": null,
+  "winner": null,
+  "stage": "LAST_16"
+ },
+ {
+  "id": 537380,
+  "league_id": 2027,
+  "season": "2026",
+  "utc_date": "2026-07-07 00:00:00.000000",
+  "status": "SCHEDULED",
+  "home_team_id": 771,
+  "away_team_id": 805,
+  "home_team_name": "United States",
+  "away_team_name": "Belgium",
+  "score_home": null,
+  "score_away": null,
+  "winner": null,
+  "stage": "LAST_16"
  }
 ]
