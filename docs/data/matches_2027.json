@@ -1311,9 +1311,9 @@
   "away_team_id": 816,
   "home_team_name": "Spain",
   "away_team_name": "Austria",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 1,
+  "score_away": 0,
+  "winner": "HOME_TEAM",
   "stage": "LAST_32"
  },
  {
