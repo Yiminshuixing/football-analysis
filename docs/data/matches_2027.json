@@ -1510,5 +1510,20 @@
   "score_away": null,
   "winner": null,
   "stage": "LAST_16"
+ },
+ {
+  "id": 537383,
+  "league_id": 2027,
+  "season": "2026",
+  "utc_date": "2026-07-09 20:00:00.000000",
+  "status": "SCHEDULED",
+  "home_team_id": 773,
+  "away_team_id": 815,
+  "home_team_name": "France",
+  "away_team_name": "Morocco",
+  "score_home": null,
+  "score_away": null,
+  "winner": null,
+  "stage": "QUARTER_FINALS"
  }
 ]
