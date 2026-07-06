@@ -1461,9 +1461,9 @@
   "away_team_id": 760,
   "home_team_name": "Portugal",
   "away_team_name": "Spain",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 0,
+  "score_away": 0,
+  "winner": "DRAW",
   "stage": "LAST_16"
  },
  {
