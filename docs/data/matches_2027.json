@@ -1525,5 +1525,20 @@
   "score_away": null,
   "winner": null,
   "stage": "QUARTER_FINALS"
+ },
+ {
+  "id": 537385,
+  "league_id": 2027,
+  "season": "2026",
+  "utc_date": "2026-07-11 21:00:00.000000",
+  "status": "SCHEDULED",
+  "home_team_id": 8872,
+  "away_team_id": 770,
+  "home_team_name": "Norway",
+  "away_team_name": "England",
+  "score_home": null,
+  "score_away": null,
+  "winner": null,
+  "stage": "QUARTER_FINALS"
  }
 ]
