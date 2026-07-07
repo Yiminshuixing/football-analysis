@@ -1527,6 +1527,21 @@
   "stage": "QUARTER_FINALS"
  },
  {
+  "id": 537384,
+  "league_id": 2027,
+  "season": "2026",
+  "utc_date": "2026-07-10 19:00:00.000000",
+  "status": "SCHEDULED",
+  "home_team_id": 760,
+  "away_team_id": 805,
+  "home_team_name": "Spain",
+  "away_team_name": "Belgium",
+  "score_home": null,
+  "score_away": null,
+  "winner": null,
+  "stage": "QUARTER_FINALS"
+ },
+ {
   "id": 537385,
   "league_id": 2027,
   "season": "2026",
