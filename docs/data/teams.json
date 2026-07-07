@@ -1842,127 +1842,127 @@
  {
   "id": 758,
   "n": "Uruguay",
-  "elo": 1462.9
+  "elo": 1464.6
  },
  {
   "id": 759,
   "n": "Germany",
-  "elo": 1492.3
+  "elo": 1489.5
  },
  {
   "id": 760,
   "n": "Spain",
-  "elo": 1904.7
+  "elo": 1915.2
  },
  {
   "id": 761,
   "n": "Paraguay",
-  "elo": 1679.9
+  "elo": 1677.7
  },
  {
   "id": 762,
   "n": "Argentina",
-  "elo": 2198.7
+  "elo": 2204.6
  },
  {
   "id": 763,
   "n": "Ghana",
-  "elo": 1582.8
+  "elo": 1581.9
  },
  {
   "id": 764,
   "n": "Brazil",
-  "elo": 2000.1
+  "elo": 1995.6
  },
  {
   "id": 765,
   "n": "Portugal",
-  "elo": 1819.8
+  "elo": 1814.9
  },
  {
   "id": 766,
   "n": "Japan",
-  "elo": 1651.1
+  "elo": 1648.9
  },
  {
   "id": 769,
   "n": "Mexico",
-  "elo": 2000.6
+  "elo": 1989.8
  },
  {
   "id": 770,
   "n": "England",
-  "elo": 2044.5
+  "elo": 2052.0
  },
  {
   "id": 771,
   "n": "United States",
-  "elo": 1774.3
+  "elo": 1765.3
  },
  {
   "id": 772,
   "n": "South Korea",
-  "elo": 1296.9
+  "elo": 1293.9
  },
  {
   "id": 773,
   "n": "France",
-  "elo": 2324.5
+  "elo": 2332.8
  },
  {
   "id": 774,
   "n": "South Africa",
-  "elo": 1375.6
+  "elo": 1373.1
  },
  {
   "id": 778,
   "n": "Algeria",
-  "elo": 1492.4
+  "elo": 1489.3
  },
  {
   "id": 779,
   "n": "Australia",
-  "elo": 1606.6
+  "elo": 1606.2
  },
  {
   "id": 783,
   "n": "New Zealand",
-  "elo": 1403.6
+  "elo": 1407.4
  },
  {
   "id": 788,
   "n": "Switzerland",
-  "elo": 1889.0
+  "elo": 1889.6
  },
  {
   "id": 791,
   "n": "Ecuador",
-  "elo": 1453.3
+  "elo": 1449.5
  },
  {
   "id": 792,
   "n": "Sweden",
-  "elo": 1533.3
+  "elo": 1531.6
  },
  {
   "id": 798,
   "n": "Czechia",
-  "elo": 1182.8
+  "elo": 1179.9
  },
  {
   "id": 799,
   "n": "Croatia",
-  "elo": 1670.7
+  "elo": 1670.5
  },
  {
   "id": 801,
   "n": "Saudi Arabia",
-  "elo": 1452.7
+  "elo": 1454.6
  },
  {
   "id": 802,
   "n": "Tunisia",
-  "elo": 989.7
+  "elo": 986.3
  },
  {
   "id": 803,
@@ -1972,111 +1972,111 @@
  {
   "id": 804,
   "n": "Senegal",
-  "elo": 1409.1
+  "elo": 1409.4
  },
  {
   "id": 805,
   "n": "Belgium",
-  "elo": 1865.2
+  "elo": 1880.2
  },
  {
   "id": 815,
   "n": "Morocco",
-  "elo": 2139.5
+  "elo": 2140.5
  },
  {
   "id": 816,
   "n": "Austria",
-  "elo": 1486.2
+  "elo": 1484.0
  },
  {
   "id": 818,
   "n": "Colombia",
-  "elo": 1937.3
+  "elo": 1940.0
  },
  {
   "id": 825,
   "n": "Egypt",
-  "elo": 1840.3
+  "elo": 1842.3
  },
  {
   "id": 828,
   "n": "Canada",
-  "elo": 1626.2
+  "elo": 1626.0
  },
  {
   "id": 836,
   "n": "Haiti",
-  "elo": 989.5
+  "elo": 987.1
  },
  {
   "id": 840,
   "n": "Iran",
-  "elo": 1674.1
+  "elo": 1679.3
  },
  {
   "id": 1060,
   "n": "Bosnia-Herzegovina",
-  "elo": 1525.5
+  "elo": 1524.6
  },
  {
   "id": 1836,
   "n": "Panama",
-  "elo": 1092.6
+  "elo": 1089.5
  },
  {
   "id": 1930,
   "n": "Cape Verde Islands",
-  "elo": 1554.0
+  "elo": 1555.9
  },
  {
   "id": 1934,
   "n": "Congo DR",
-  "elo": 1610.9
+  "elo": 1613.8
  },
  {
   "id": 1935,
   "n": "Ivory Coast",
-  "elo": 1531.4
+  "elo": 1529.4
  },
  {
   "id": 8030,
   "n": "Qatar",
-  "elo": 1284.2
+  "elo": 1284.4
  },
  {
   "id": 8049,
   "n": "Jordan",
-  "elo": 1000.2
+  "elo": 996.1
  },
  {
   "id": 8062,
   "n": "Iraq",
-  "elo": 975.9
+  "elo": 972.1
  },
  {
   "id": 8070,
   "n": "Uzbekistan",
-  "elo": 1034.7
+  "elo": 1032.6
  },
  {
   "id": 8601,
   "n": "Netherlands",
-  "elo": 1795.1
+  "elo": 1794.2
  },
  {
   "id": 8872,
   "n": "Norway",
-  "elo": 2012.6
+  "elo": 2024.9
  },
  {
   "id": 8873,
   "n": "Scotland",
-  "elo": 1439.7
+  "elo": 1439.6
  },
  {
   "id": 9460,
   "n": "Curaçao",
-  "elo": 1206.0
+  "elo": 1202.4
  }
 ]
