@@ -1501,14 +1501,14 @@
   "league_id": 2027,
   "season": "2026",
   "utc_date": "2026-07-07 20:00:00.000000",
-  "status": "SCHEDULED",
+  "status": "FINISHED",
   "home_team_id": 788,
   "away_team_id": 818,
   "home_team_name": "Switzerland",
   "away_team_name": "Colombia",
-  "score_home": 0,
-  "score_away": 0,
-  "winner": "DRAW",
+  "score_home": 4,
+  "score_away": 3,
+  "winner": "HOME_TEAM",
   "stage": "LAST_16"
  },
  {
