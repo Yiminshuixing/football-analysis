@@ -1536,9 +1536,9 @@
   "away_team_id": 805,
   "home_team_name": "Spain",
   "away_team_name": "Belgium",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 1,
+  "score_away": 1,
+  "winner": "DRAW",
   "stage": "QUARTER_FINALS"
  },
  {
