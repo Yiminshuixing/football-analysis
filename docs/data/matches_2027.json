@@ -1570,5 +1570,20 @@
   "score_away": null,
   "winner": null,
   "stage": "QUARTER_FINALS"
+ },
+ {
+  "id": 537387,
+  "league_id": 2027,
+  "season": "2026",
+  "utc_date": "2026-07-14 19:00:00.000000",
+  "status": "SCHEDULED",
+  "home_team_id": 773,
+  "away_team_id": 760,
+  "home_team_name": "France",
+  "away_team_name": "Spain",
+  "score_home": null,
+  "score_away": null,
+  "winner": null,
+  "stage": "SEMI_FINALS"
  }
 ]
