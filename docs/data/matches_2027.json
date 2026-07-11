@@ -1531,14 +1531,14 @@
   "league_id": 2027,
   "season": "2026",
   "utc_date": "2026-07-10 19:00:00.000000",
-  "status": "SCHEDULED",
+  "status": "FINISHED",
   "home_team_id": 760,
   "away_team_id": 805,
   "home_team_name": "Spain",
   "away_team_name": "Belgium",
-  "score_home": 1,
+  "score_home": 2,
   "score_away": 1,
-  "winner": "DRAW",
+  "winner": "HOME_TEAM",
   "stage": "QUARTER_FINALS"
  },
  {
