@@ -1596,9 +1596,9 @@
   "away_team_id": 762,
   "home_team_name": "England",
   "away_team_name": "Argentina",
-  "score_home": null,
-  "score_away": null,
-  "winner": null,
+  "score_home": 0,
+  "score_away": 0,
+  "winner": "DRAW",
   "stage": "SEMI_FINALS"
  }
 ]
