@@ -46,45 +46,5 @@
     "emblem_url": null,
     "current_matchday": 0,
     "updated_at": "2026-06-10 06:17:34.240135"
-  },
-  {
-    "id": 2023,
-    "name": "世界杯预选赛",
-    "code": "WCQ",
-    "emblem_url": null,
-    "current_matchday": 0,
-    "updated_at": "2026-06-10 07:48:45.386275"
-  },
-  {
-    "id": 2024,
-    "name": "2022世界杯",
-    "code": "WC2022",
-    "emblem_url": null,
-    "current_matchday": 0,
-    "updated_at": "2026-06-10 07:48:59.746874"
-  },
-  {
-    "id": 2025,
-    "name": "2018世界杯",
-    "code": "WC2018",
-    "emblem_url": null,
-    "current_matchday": 0,
-    "updated_at": "2026-06-10 07:49:00.454971"
-  },
-  {
-    "id": 2026,
-    "name": "2014世界杯",
-    "code": "WC2014",
-    "emblem_url": null,
-    "current_matchday": 0,
-    "updated_at": "2026-06-10 07:49:01.139651"
-  },
-  {
-    "id": 2027,
-    "name": "2026世界杯",
-    "code": "WC2026",
-    "emblem_url": null,
-    "current_matchday": 0,
-    "updated_at": "2026-06-23 12:00:00.000000"
   }
 ]

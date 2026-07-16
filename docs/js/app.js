@@ -5,9 +5,7 @@ const CONFIG = {
     ODDS_API_KEY: 'efc0bf96ed9d8255c706f2185a15e42e',
     DATA_PATH: 'data',
     CACHE_TTL: 6 * 60 * 60 * 1000,
-    // 💾 缓存版本号 — 改了数据要 bump 一下避免用户拿到老 localStorage
-    //   现状: 2026 WC 数据导入 (48 队 + 72 场)
-    CACHE_VERSION: 'v2-wc2026',
+    CACHE_VERSION: 'v3-no-wc',
 };
 
 const LEAGUE_META = {
@@ -17,11 +15,6 @@ const LEAGUE_META = {
     2019: { code: 'SA', name: '意大利超级联赛', abbr: '意甲' },
     2015: { code: 'FL1', name: '法国超级联赛', abbr: '法甲' },
     2022: { code: 'CN1', name: '中国超级联赛', abbr: '中超' },
-    2023: { code: 'WCQ', name: '世界杯预选赛', abbr: '世预赛' },
-    2024: { code: 'WC2022', name: '2022世界杯', abbr: '2022世界杯' },
-    2025: { code: 'WC2018', name: '2018世界杯', abbr: '2018世界杯' },
-    2026: { code: 'WC2014', name: '2014世界杯', abbr: '2014世界杯' },
-    2027: { code: 'WC2026', name: '2026世界杯', abbr: '2026世界杯' },
 };
 
 const LEAGUE_PARAMS = {
@@ -31,11 +24,6 @@ const LEAGUE_PARAMS = {
     2019: { eloHomeAdv: 60, dixonColesRho: 0.17, poissonWeight: 0.50 },
     2015: { eloHomeAdv: 75, dixonColesRho: 0.14, poissonWeight: 0.55 },
     2022: { eloHomeAdv: 100, dixonColesRho: 0.15, poissonWeight: 0.55 },
-    2023: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.50 },
-    2024: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.50 },
-    2025: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.50 },
-    2026: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.50 },
-    2027: { eloHomeAdv: 0, dixonColesRho: 0.15, poissonWeight: 0.55 },
 };
 
 // ====== 状态 ======
