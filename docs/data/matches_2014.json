@@ -32176,28 +32176,28 @@
   "league_id": 2014,
   "season": "2026-27",
   "utc_date": "2026-08-27 18:30:00.000000",
-  "status": "SCHEDULED",
+  "status": "FINISHED",
   "home_team_id": 558,
   "away_team_id": 79,
   "home_team_name": "RC Celta de Vigo",
   "away_team_name": "CA Osasuna",
-  "score_home": null,
-  "score_away": null,
-  "winner": null
+  "score_home": 1,
+  "score_away": 2,
+  "winner": "AWAY_TEAM"
  },
  {
   "id": 564630,
   "league_id": 2014,
   "season": "2026-27",
   "utc_date": "2026-08-27 19:00:00.000000",
-  "status": "SCHEDULED",
+  "status": "FINISHED",
   "home_team_id": 81,
   "away_team_id": 77,
   "home_team_name": "FC Barcelona",
   "away_team_name": "Athletic Club",
-  "score_home": null,
-  "score_away": null,
-  "winner": null
+  "score_home": 2,
+  "score_away": 0,
+  "winner": "HOME_TEAM"
  },
  {
   "id": 564654,
