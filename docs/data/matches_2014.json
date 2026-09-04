@@ -32349,9 +32349,9 @@
   "away_team_id": 558,
   "home_team_name": "Real Sociedad de Fútbol",
   "away_team_name": "RC Celta de Vigo",
-  "score_home": null,
-  "score_away": null,
-  "winner": null
+  "score_home": 0,
+  "score_away": 0,
+  "winner": "DRAW"
  },
  {
   "id": 564667,
@@ -32777,7 +32777,7 @@
   "id": 564689,
   "league_id": 2014,
   "season": "2026-27",
-  "utc_date": "2026-09-20 00:00:00.000000",
+  "utc_date": "2026-09-20 19:00:00.000000",
   "status": "SCHEDULED",
   "home_team_id": 95,
   "away_team_id": 92,
@@ -32819,7 +32819,7 @@
   "id": 564692,
   "league_id": 2014,
   "season": "2026-27",
-  "utc_date": "2026-09-20 00:00:00.000000",
+  "utc_date": "2026-09-18 19:00:00.000000",
   "status": "SCHEDULED",
   "home_team_id": 80,
   "away_team_id": 285,
