@@ -2,37 +2,37 @@
  {
   "id": 1,
   "n": "1. FC Köln",
-  "elo": 1450.0
+  "elo": 1436.1
  },
  {
   "id": 2,
   "n": "TSG 1899 Hoffenheim",
-  "elo": 1485.8
+  "elo": 1470.5
  },
  {
   "id": 3,
   "n": "Bayer 04 Leverkusen",
-  "elo": 1646.4
+  "elo": 1657.8
  },
  {
   "id": 4,
   "n": "Borussia Dortmund",
-  "elo": 1833.4
+  "elo": 1854.0
  },
  {
   "id": 5,
   "n": "FC Bayern München",
-  "elo": 1913.5
+  "elo": 1918.1
  },
  {
   "id": 7,
   "n": "Hamburger SV",
-  "elo": 1358.2
+  "elo": 1347.9
  },
  {
   "id": 10,
   "n": "VfB Stuttgart",
-  "elo": 1608.8
+  "elo": 1586.1
  },
  {
   "id": 11,
@@ -42,32 +42,32 @@
  {
   "id": 12,
   "n": "SV Werder Bremen",
-  "elo": 1533.4
+  "elo": 1561.7
  },
  {
   "id": 15,
   "n": "1. FSV Mainz 05",
-  "elo": 1541.9
+  "elo": 1538.1
  },
  {
   "id": 16,
   "n": "FC Augsburg",
-  "elo": 1674.7
+  "elo": 1679.4
  },
  {
   "id": 17,
   "n": "SC Freiburg",
-  "elo": 1702.3
+  "elo": 1720.5
  },
  {
   "id": 18,
   "n": "Borussia Mönchengladbach",
-  "elo": 1359.5
+  "elo": 1329.7
  },
  {
   "id": 19,
   "n": "Eintracht Frankfurt",
-  "elo": 1523.0
+  "elo": 1532.7
  },
  {
   "id": 20,
@@ -77,7 +77,7 @@
  {
   "id": 28,
   "n": "1. FC Union Berlin",
-  "elo": 1357.8
+  "elo": 1338.8
  },
  {
   "id": 44,
@@ -87,57 +87,57 @@
  {
   "id": 57,
   "n": "Arsenal FC",
-  "elo": 1871.7
+  "elo": 1857.7
  },
  {
   "id": 58,
   "n": "Aston Villa FC",
-  "elo": 1473.5
+  "elo": 1470.0
  },
  {
   "id": 61,
   "n": "Chelsea FC",
-  "elo": 1663.9
+  "elo": 1655.0
  },
  {
   "id": 62,
   "n": "Everton FC",
-  "elo": 1633.0
+  "elo": 1635.2
  },
  {
   "id": 63,
   "n": "Fulham FC",
-  "elo": 1338.9
+  "elo": 1333.3
  },
  {
   "id": 64,
   "n": "Liverpool FC",
-  "elo": 1642.6
+  "elo": 1655.6
  },
  {
   "id": 65,
   "n": "Manchester City FC",
-  "elo": 1915.4
+  "elo": 1932.6
  },
  {
   "id": 66,
   "n": "Manchester United FC",
-  "elo": 1636.7
+  "elo": 1622.8
  },
  {
   "id": 67,
   "n": "Newcastle United FC",
-  "elo": 1603.3
+  "elo": 1612.0
  },
  {
   "id": 71,
   "n": "Sunderland AFC",
-  "elo": 1503.7
+  "elo": 1498.6
  },
  {
   "id": 73,
   "n": "Tottenham Hotspur FC",
-  "elo": 1347.8
+  "elo": 1336.0
  },
  {
   "id": 76,
@@ -147,47 +147,47 @@
  {
   "id": 77,
   "n": "Athletic Club",
-  "elo": 1558.3
+  "elo": 1566.5
  },
  {
   "id": 78,
   "n": "Club Atlético de Madrid",
-  "elo": 1731.1
+  "elo": 1754.1
  },
  {
   "id": 79,
   "n": "CA Osasuna",
-  "elo": 1479.6
+  "elo": 1460.8
  },
  {
   "id": 80,
   "n": "RCD Espanyol de Barcelona",
-  "elo": 1503.7
+  "elo": 1486.8
  },
  {
   "id": 81,
   "n": "FC Barcelona",
-  "elo": 1986.0
+  "elo": 2010.0
  },
  {
   "id": 82,
   "n": "Getafe CF",
-  "elo": 1438.0
+  "elo": 1433.9
  },
  {
   "id": 86,
   "n": "Real Madrid CF",
-  "elo": 1815.4
+  "elo": 1807.4
  },
  {
   "id": 87,
   "n": "Rayo Vallecano de Madrid",
-  "elo": 1528.2
+  "elo": 1536.3
  },
  {
   "id": 88,
   "n": "Levante UD",
-  "elo": 1549.0
+  "elo": 1539.7
  },
  {
   "id": 89,
@@ -197,97 +197,97 @@
  {
   "id": 90,
   "n": "Real Betis Balompié",
-  "elo": 1726.5
+  "elo": 1735.2
  },
  {
   "id": 92,
   "n": "Real Sociedad de Fútbol",
-  "elo": 1501.9
+  "elo": 1510.9
  },
  {
   "id": 94,
   "n": "Villarreal CF",
-  "elo": 1547.3
+  "elo": 1551.6
  },
  {
   "id": 95,
   "n": "Valencia CF",
-  "elo": 1369.8
+  "elo": 1361.6
  },
  {
   "id": 98,
   "n": "AC Milan",
-  "elo": 1779.0
+  "elo": 1796.1
  },
  {
   "id": 99,
   "n": "ACF Fiorentina",
-  "elo": 1358.6
+  "elo": 1356.0
  },
  {
   "id": 100,
   "n": "AS Roma",
-  "elo": 1899.1
+  "elo": 1914.7
  },
  {
   "id": 102,
   "n": "Atalanta BC",
-  "elo": 1640.2
+  "elo": 1622.2
  },
  {
   "id": 103,
   "n": "Bologna FC 1909",
-  "elo": 1426.0
+  "elo": 1412.8
  },
  {
   "id": 104,
   "n": "Cagliari Calcio",
-  "elo": 1692.2
+  "elo": 1726.1
  },
  {
   "id": 107,
   "n": "Genoa CFC",
-  "elo": 1358.7
+  "elo": 1339.4
  },
  {
   "id": 108,
   "n": "FC Internazionale Milano",
-  "elo": 1950.5
+  "elo": 1966.7
  },
  {
   "id": 109,
   "n": "Juventus FC",
-  "elo": 1734.7
+  "elo": 1738.8
  },
  {
   "id": 110,
   "n": "SS Lazio",
-  "elo": 1786.7
+  "elo": 1801.6
  },
  {
   "id": 112,
   "n": "Parma Calcio 1913",
-  "elo": 1362.2
+  "elo": 1364.1
  },
  {
   "id": 113,
   "n": "SSC Napoli",
-  "elo": 1660.0
+  "elo": 1646.3
  },
  {
   "id": 115,
   "n": "Udinese Calcio",
-  "elo": 1582.8
+  "elo": 1573.2
  },
  {
   "id": 263,
   "n": "Deportivo Alavés",
-  "elo": 1612.2
+  "elo": 1594.6
  },
  {
   "id": 285,
   "n": "Elche CF",
-  "elo": 1405.2
+  "elo": 1424.7
  },
  {
   "id": 298,
@@ -302,27 +302,27 @@
  {
   "id": 341,
   "n": "Leeds United FC",
-  "elo": 1706.8
+  "elo": 1712.7
  },
  {
   "id": 351,
   "n": "Nottingham Forest FC",
-  "elo": 1504.3
+  "elo": 1486.6
  },
  {
   "id": 354,
   "n": "Crystal Palace FC",
-  "elo": 1427.4
+  "elo": 1427.8
  },
  {
   "id": 397,
   "n": "Brighton & Hove Albion FC",
-  "elo": 1694.8
+  "elo": 1727.0
  },
  {
   "id": 402,
   "n": "Brentford FC",
-  "elo": 1639.8
+  "elo": 1663.9
  },
  {
   "id": 450,
@@ -337,7 +337,7 @@
  {
   "id": 471,
   "n": "US Sassuolo Calcio",
-  "elo": 1558.6
+  "elo": 1553.3
  },
  {
   "id": 487,
@@ -347,62 +347,62 @@
  {
   "id": 511,
   "n": "Toulouse FC",
-  "elo": 1459.7
+  "elo": 1465.1
  },
  {
   "id": 512,
   "n": "Stade Brestois 29",
-  "elo": 1506.1
+  "elo": 1488.7
  },
  {
   "id": 516,
   "n": "Olympique de Marseille",
-  "elo": 1586.8
+  "elo": 1574.8
  },
  {
   "id": 519,
   "n": "AJ Auxerre",
-  "elo": 1359.7
+  "elo": 1366.5
  },
  {
   "id": 521,
   "n": "Lille OSC",
-  "elo": 1773.6
+  "elo": 1761.7
  },
  {
   "id": 522,
   "n": "OGC Nice",
-  "elo": 1400.2
+  "elo": 1408.8
  },
  {
   "id": 523,
   "n": "Olympique Lyonnais",
-  "elo": 1731.9
+  "elo": 1754.8
  },
  {
   "id": 524,
   "n": "Paris Saint-Germain FC",
-  "elo": 1769.2
+  "elo": 1780.1
  },
  {
   "id": 525,
   "n": "FC Lorient",
-  "elo": 1494.7
+  "elo": 1477.9
  },
  {
   "id": 529,
   "n": "Stade Rennais FC 1901",
-  "elo": 1739.7
+  "elo": 1736.5
  },
  {
   "id": 532,
   "n": "Angers SCO",
-  "elo": 1487.0
+  "elo": 1501.9
  },
  {
   "id": 533,
   "n": "Le Havre AC",
-  "elo": 1399.0
+  "elo": 1384.8
  },
  {
   "id": 543,
@@ -417,22 +417,22 @@
  {
   "id": 546,
   "n": "Racing Club de Lens",
-  "elo": 1536.8
+  "elo": 1514.6
  },
  {
   "id": 548,
   "n": "AS Monaco FC",
-  "elo": 1862.2
+  "elo": 1882.3
  },
  {
   "id": 558,
   "n": "RC Celta de Vigo",
-  "elo": 1389.7
+  "elo": 1394.3
  },
  {
   "id": 559,
   "n": "Sevilla FC",
-  "elo": 1643.0
+  "elo": 1658.2
  },
  {
   "id": 563,
@@ -442,27 +442,27 @@
  {
   "id": 576,
   "n": "RC Strasbourg Alsace",
-  "elo": 1679.6
+  "elo": 1677.2
  },
  {
   "id": 586,
   "n": "Torino FC",
-  "elo": 1434.1
+  "elo": 1434.4
  },
  {
   "id": 721,
   "n": "RB Leipzig",
-  "elo": 1585.4
+  "elo": 1569.4
  },
  {
   "id": 1044,
   "n": "AFC Bournemouth",
-  "elo": 1584.9
+  "elo": 1567.7
  },
  {
   "id": 1045,
   "n": "Paris FC",
-  "elo": 1724.1
+  "elo": 1743.3
  },
  {
   "id": 1048,
@@ -472,12 +472,12 @@
  {
   "id": 5890,
   "n": "US Lecce",
-  "elo": 1513.9
+  "elo": 1511.4
  },
  {
   "id": 7397,
   "n": "Como 1907",
-  "elo": 1793.3
+  "elo": 1778.1
  },
  {
   "id": 7398,
@@ -2082,71 +2082,71 @@
  {
   "id": 1076,
   "n": "Coventry City FC",
-  "elo": 1379.6
+  "elo": 1386.2
  },
  {
   "id": 322,
   "n": "Hull City AFC",
-  "elo": 1691.4
+  "elo": 1684.0
  },
  {
   "id": 349,
   "n": "Ipswich Town FC",
-  "elo": 1494.4
+  "elo": 1489.1
  },
  {
   "id": 29,
   "n": "SC Paderborn 07",
-  "elo": 1482.3
+  "elo": 1489.6
  },
  {
   "id": 719,
   "n": "SV 07 Elversberg",
-  "elo": 1640.2
+  "elo": 1650.7
  },
  {
   "id": 6,
   "n": "FC Schalke 04",
-  "elo": 1543.8
+  "elo": 1559.4
  },
  {
   "id": 5335,
   "n": "Real Racing Club de Santander",
-  "elo": 1456.2
+  "elo": 1440.6
  },
  {
   "id": 560,
   "n": "RC Deportivo La Coruña",
-  "elo": 1569.5
+  "elo": 1565.0
  },
  {
   "id": 84,
   "n": "Málaga CF",
-  "elo": 1381.6
+  "elo": 1360.2
  },
  {
   "id": 5911,
   "n": "AC Monza",
-  "elo": 1393.5
+  "elo": 1397.6
  },
  {
   "id": 470,
   "n": "Frosinone Calcio",
-  "elo": 1602.0
+  "elo": 1624.5
  },
  {
   "id": 454,
   "n": "Venezia FC",
-  "elo": 1232.4
+  "elo": 1201.3
  },
  {
   "id": 535,
   "n": "Le Mans FC",
-  "elo": 1475.3
+  "elo": 1481.7
  },
  {
   "id": 531,
   "n": "ES Troyes AC",
-  "elo": 1498.1
+  "elo": 1482.9
  }
 ]
