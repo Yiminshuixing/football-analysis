@@ -30370,14 +30370,14 @@
   "league_id": 2015,
   "season": "2026-27",
   "utc_date": "2026-10-11 15:15:00.000000",
-  "status": "SCHEDULED",
+  "status": "FINISHED",
   "home_team_id": 529,
   "away_team_id": 519,
   "home_team_name": "Stade Rennais FC 1901",
   "away_team_name": "AJ Auxerre",
-  "score_home": null,
-  "score_away": null,
-  "winner": null
+  "score_home": 4,
+  "score_away": 1,
+  "winner": "HOME_TEAM"
  },
  {
   "id": 559668,
@@ -30412,28 +30412,28 @@
   "league_id": 2015,
   "season": "2026-27",
   "utc_date": "2026-10-11 13:00:00.000000",
-  "status": "SCHEDULED",
+  "status": "FINISHED",
   "home_team_id": 522,
   "away_team_id": 576,
   "home_team_name": "OGC Nice",
   "away_team_name": "RC Strasbourg Alsace",
-  "score_home": null,
-  "score_away": null,
-  "winner": null
+  "score_home": 2,
+  "score_away": 1,
+  "winner": "HOME_TEAM"
  },
  {
   "id": 559671,
   "league_id": 2015,
   "season": "2026-27",
   "utc_date": "2026-10-11 18:45:00.000000",
-  "status": "SCHEDULED",
+  "status": "FINISHED",
   "home_team_id": 531,
   "away_team_id": 516,
   "home_team_name": "ES Troyes AC",
   "away_team_name": "Olympique de Marseille",
-  "score_home": null,
-  "score_away": null,
-  "winner": null
+  "score_home": 0,
+  "score_away": 2,
+  "winner": "AWAY_TEAM"
  },
  {
   "id": 559672,
